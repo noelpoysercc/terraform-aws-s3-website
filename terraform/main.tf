@@ -26,6 +26,7 @@ resource "aws_s3_bucket" "s3Bucket" {
 EOF
 
   website {
-    index_document = "Index.html"
+    index_document = "index.html"
+    error_document = "error.html"
   }
 }
