@@ -1,0 +1,2 @@
+# terraform-aws-s3-website
+CREATE AN AWS S3 WEBSITE USING TERRAFORM
