@@ -6,7 +6,7 @@ terraform {
 }
 
 module "website_s3_bucket" {
-  source = "./modules/aws-s3-static-website-bucket"
+  source = "./vanguard-test-website"
 
   bucket_name = "<UNIQUE BUCKET NAME>"
 
