@@ -1,12 +1,16 @@
-# Input variable definitions
+# Output variable definitions
 
-variable "bucket_name" {
-  description = "Name of the s3 bucket. Must be unique."
-  type        = string
+output "arn" {
+  description = "ARN of the bucket"
+  value       = aws_s3_bucket.s3_bucket.arn
 }
 
-variable "tags" {
-  description = "Tags to set on the bucket."
-  type        = map(string)
-  default     = {}
+output "name" {
+  description = "Name (id) of the bucket"
+  value       = aws_s3_bucket.s3_bucket.id
+}
+
+output "domain" {
+  description = "Domain name of the bucket"
+  value       = aws_s3_bucket.s3_bucket.website_domain
 }
