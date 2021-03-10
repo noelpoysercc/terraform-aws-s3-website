@@ -1,7 +1,12 @@
-output "s3_website_bucket_name" {
-  value = "${aws_s3_bucket.website_bucket.id}"
+# Input variable definitions
+
+variable "bucket_name" {
+  description = "Name of the s3 bucket. Must be unique."
+  type        = string
 }
 
-output "s3_website_bucket_domain_name" {
-  value = "${aws_s3_bucket.website_bucket.bucket_domain_name}"
+variable "tags" {
+  description = "Tags to set on the bucket."
+  type        = map(string)
+  default     = {}
 }
