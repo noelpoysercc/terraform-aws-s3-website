@@ -5,6 +5,17 @@ terraform {
   required_version = ">= 0.12"
 }
 
+module "website_s3_bucket" {
+  source = "./modules/aws-s3-static-website-bucket"
+
+  bucket_name = "<UNIQUE BUCKET NAME>"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+  }
+}
+
 resource "aws_s3_bucket" "s3_bucket" {
   bucket = var.bucket_name
 
