@@ -4,8 +4,20 @@ provider "aws" {
   region  = "us-east-1"
 }
 
+terraform {
+  required_version = ">= 0.12"
+}
+
+provider "random" {}
+
+resource "random_string" "random" {
+  length    = 8
+  special   = false
+  min_lower = 8
+}
+
 resource "aws_s3_bucket" "s3Bucket" {
-  bucket = "vanguard-test-website"
+  bucket = "vanguard-test-website-${random_string.random.result}"
   acl    = "public-read"
 
   policy = <<EOF
@@ -18,7 +30,7 @@ resource "aws_s3_bucket" "s3Bucket" {
         "s3:GetObject"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::vanguard-test-website/*",
+      "Resource": "arn:aws:s3:::vanguard-test-website-${random_string.random.result}/*",
       "Principal": "*"
     }
   ]
