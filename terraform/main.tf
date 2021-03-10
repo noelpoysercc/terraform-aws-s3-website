@@ -27,7 +27,7 @@ resource "random_string" "random" {
 resource "aws_s3_bucket" "s3_bucket" {
   bucket = "var.bucket_name${random_string.random.result}"
 
-  force_destroy = true
+  force_destroy = false
   
   acl    = "public-read"
   policy = <<EOF
