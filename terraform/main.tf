@@ -16,8 +16,16 @@ terraform {
 #  }
 #}
 
-resource "aws_s3_bucket" "s3_bucket" {
-  bucket = var.bucket_name
+provider "random" {}
+
+resource "random_string" "random" {
+  length    = 8
+  special   = false
+  min_lower = 8
+}
+
+resource "aws_s3_bucket" "website_bucket" {
+  bucket = "var.bucket_name${random_string.random.result}"
 
   acl    = "public-read"
   policy = <<EOF
@@ -32,7 +40,7 @@ resource "aws_s3_bucket" "s3_bucket" {
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${var.bucket_name}/*"
+                "arn:aws:s3:::aws_s3_bucket.website_bucket/*"
             ]
         }
     ]
