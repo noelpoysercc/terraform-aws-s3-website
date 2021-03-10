@@ -24,7 +24,7 @@ resource "random_string" "random" {
   min_lower = 8
 }
 
-resource "aws_s3_bucket" "website_bucket" {
+resource "aws_s3_bucket" "s3_bucket" {
   bucket = "var.bucket_name${random_string.random.result}"
 
   acl    = "public-read"
@@ -40,7 +40,7 @@ resource "aws_s3_bucket" "website_bucket" {
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::aws_s3_bucket.website_bucket/*"
+                "arn:aws:s3:::aws_s3_bucket.s3_bucket/*"
             ]
         }
     ]
