@@ -25,5 +25,9 @@ variable "index_document" {
   default = "index.html"
 }
 
+variable region {
+  description = "e.g. us-east-1"
+}
+
 # variable "aws_secret_key" {}
 # variable "aws_access_key" {}
