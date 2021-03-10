@@ -1,3 +1,11 @@
+provider "aws" {
+  region = var.region
+}
+
+terraform {
+  required_version = ">= 0.12"
+}
+
 resource "aws_s3_bucket" "website_bucket" {
   acl       = "private"
   bucket    = "${var.bucket_name}"
