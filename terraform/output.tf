@@ -17,6 +17,6 @@ output "domain" {
 
 output "url" {
   description = "URL of the bucket"
-  value       = "${aws_s3_bucket.s3_bucket.bucket}.s3-website-${var.region}.amazonaws.com"
+  #value       = "${aws_s3_bucket.s3_bucket.bucket}.s3-website-${var.region}.amazonaws.com"
 }
 
