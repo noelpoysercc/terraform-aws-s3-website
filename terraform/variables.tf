@@ -1,7 +1,16 @@
 variable "create_bucket" {
-  description = "Controls if S3 bucket should be created"
-  type        = bool
+  description = "Conditionally create S3 bucket"
   default     = true
+}
+
+variable "upload_files" {
+  description = "Conditionally upload files"
+  default     = true
+}
+
+variable "allow_public" {
+  description = "Allow public read access to bucket"
+  default     = false
 }
 
 variable "aws_secret_key" {}
