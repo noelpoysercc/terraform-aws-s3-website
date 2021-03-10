@@ -5,16 +5,16 @@ terraform {
   required_version = ">= 0.12"
 }
 
-module "website_s3_bucket" {
-  source = "./vanguard-test-website"
+#module "website_s3_bucket" {
+#  source = "./vanguard-test-website"
 
-  bucket_name = "<UNIQUE BUCKET NAME>"
+#  bucket_name = "<UNIQUE BUCKET NAME>"
 
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
-  }
-}
+#  tags = {
+#    Terraform   = "true"
+#    Environment = "dev"
+#  }
+#}
 
 resource "aws_s3_bucket" "s3_bucket" {
   bucket = var.bucket_name
