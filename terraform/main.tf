@@ -29,8 +29,12 @@ resource "aws_s3_bucket" "s3_bucket" {
 
   force_destroy = true
   
+  versioning {
+    enabled = true                                                                                                                                                                                                                         
+  }
+  
   lifecycle {
-    prevent_destroy = false
+    create_before_destroy = true
   }
   
   acl    = "public-read"
