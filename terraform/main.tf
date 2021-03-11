@@ -59,26 +59,20 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy" {
 EOF
 }
 
-#resource "aws_s3_bucket_object" "s3_upload" {
-#  for_each = fileset("${path.root}/src", "**/*")
+resource "aws_s3_bucket_object" "s3_upload" {
+  for_each = fileset("${path.root}/src", "**/*")
   
-#  bucket = aws_s3_bucket.s3_bucket.id
-#  #key    = "index.html"
-#  #source = "./src/index.html"
-#
-#  # The filemd5() function is available in Terraform 0.11.12 and later
-#  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
-#  # etag = "${md5(file("path/to/file"))}"
-#  #etag = filemd5("index.html")
-#  key    = each.value
-#  source = "${path.module}/src/${each.value}"
-#  etag   = filemd5("${path.module}/src/${each.value}")
-#}
+  bucket = aws_s3_bucket.s3_bucket.id
+  #key    = "index.html"
+  #source = "./src/index.html"
 
-module "s3-object" {
-  source = "../src/"
-  bucketname = "${aws_s3_bucket.s3_bucket.bucket}"
-  sourceFile = "index.html"
-#  destFileName = "index.html"
+  # The filemd5() function is available in Terraform 0.11.12 and later
+  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
+  # etag = "${md5(file("path/to/file"))}"
+  #etag = filemd5("index.html")
+  key    = each.value
+  source = "${path.module}/src/${each.value}"
+  etag   = filemd5("${path.module}/src/${each.value}")
 }
-  
+
+ 
