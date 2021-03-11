@@ -62,10 +62,10 @@ EOF
 resource "aws_s3_bucket_object" "index" {
   bucket = aws_s3_bucket.s3_bucket.id
   key    = "index_object_key"
-  source = "src/index.html"
+  source = "index.html"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
   # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
   # etag = "${md5(file("path/to/file"))}"
-  etag = filemd5("src/index.html")
+  etag = filemd5("index.html")
 }
