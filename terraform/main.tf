@@ -79,6 +79,6 @@ module "s3-object" {
   source = "../src/"
   bucketname = "${aws_s3_bucket.s3_bucket.bucket}"
   sourceFile = "index.html"
-  destFileName = "index.html"
+#  destFileName = "index.html"
 }
   
