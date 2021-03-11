@@ -37,9 +37,40 @@ resource "aws_s3_bucket" "s3_bucket" {
   }
   
   acl    = "public-read"
-  policy = <<EOF
-{
+  
+#  policy = <<EOF
+#{
+#    "Version": "2012-10-17",
+#    "Statement": [
+#        {
+#            "Sid": "PublicReadGetObject",
+#            "Effect": "Allow",
+#            "Principal": "*",
+#            "Action": [
+#                "s3:GetObject"
+#            ],
+#            "Resource": [
+#                "arn:aws:s3:::${aws_s3_bucket.s3_bucket.id}/*"
+#            ]
+#        }
+#    ]
+#}
+#EOF
+
+  website {
+    index_document = "index.html"
+    error_document = "error.html"
+  }
+
+  tags = var.tags
+}
+
+resource "aws_s3_bucket_policy" "s3_bucket_policy" {
+  bucket = aws_s3_bucket.s3_bucket.id
+  
+  policy = jsonencode({
     "Version": "2012-10-17",
+    "Id" : "s3BucketPolicy",
     "Statement": [
         {
             "Sid": "PublicReadGetObject",
@@ -49,17 +80,10 @@ resource "aws_s3_bucket" "s3_bucket" {
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${aws_s3_bucket.s3_bucket.id}/*"
+                "arn:aws:s3:::${aws_s3_bucket.s3_bucket.arn}/*"
             ]
         }
     ]
-}
-EOF
-
-  website {
-    index_document = "index.html"
-    error_document = "error.html"
-  }
-
-  tags = var.tags
+})
+  
 }
