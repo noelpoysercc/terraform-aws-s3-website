@@ -71,6 +71,6 @@ resource "aws_s3_bucket_object" "s3_upload" {
   # etag = "${md5(file("path/to/file"))}"
   #etag = filemd5("index.html")
   key    = each.value
-  source = "${path.root}/src/${each.value}"
-  etag   = filemd5("${path.root}/src/${each.value}")
+  source = "${path.module}/src/${each.value}"
+  etag   = filemd5("${path.module}/src/${each.value}")
 }
