@@ -18,16 +18,22 @@ terraform {
 
 provider "random" {}
 
-resource "random_string" "random" {
-  length    = 8
-  special   = false
-  min_lower = 8
+#resource "random_string" "random" {
+#  length    = 8
+#  special   = false
+#  min_lower = 8
+#}
+
+# Create a random string
+resource "random_id" "random_string" {
+  byte_length = 5
 }
 
 resource "aws_s3_bucket" "s3_bucket" {
   #bucket = ${random_string.random.result}"
   #bucket = format("%s-%s", var.bucket_name, random_string.random.result)
-  bucket = "vanguard-test-website-24222"
+  #bucket = "vanguard-test-website-24222"
+  bucket  = format("%s-%d",var.bucket_name, random_id.random_string.dec)
 
   force_destroy = true
   
