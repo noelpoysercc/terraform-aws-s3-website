@@ -68,9 +68,10 @@ resource "aws_s3_bucket" "s3_bucket" {
 resource "aws_s3_bucket_policy" "s3_bucket_policy" {
   bucket = aws_s3_bucket.s3_bucket.id
   
-  policy = jsonencode({
+  policy = <<EOF
+{
     "Version": "2012-10-17",
-    "Id" : "s3BucketPolicy",
+    "Id": "s3bucketPolicy",
     "Statement": [
         {
             "Sid": "PublicReadGetObject",
@@ -80,10 +81,10 @@ resource "aws_s3_bucket_policy" "s3_bucket_policy" {
                 "s3:GetObject"
             ],
             "Resource": [
-                "arn:aws:s3:::${aws_s3_bucket.s3_bucket.arn}/*"
+                "arn:aws:s3:::${aws_s3_bucket.s3_bucket.id}/*"
             ]
         }
     ]
-})
-  
+}
+EOF
 }
